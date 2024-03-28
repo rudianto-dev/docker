@@ -1,0 +1,9 @@
+version: '3.9'
+services:
+  nats:
+    image: nats-streaming:latest
+    container_name: nats
+    restart: always
+    ports:
+      - 8222:8222
+      - 4222:4222

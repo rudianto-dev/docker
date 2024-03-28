@@ -1,0 +1,18 @@
+version: "3.3"
+services:
+  mongodb:
+    image : mongo
+    container_name: mongodb
+    #command: [--auth]
+    environment:
+      PUID: 1000
+      PGID: 1000
+      #MONGO_INITDB_DATABASE: ${MONGO_INITDB_DATABASE}
+      #MONGO_INITDB_ROOT_USERNAME: admin
+      #MONGO_INITDB_ROOT_PASSWORD: admin
+    volumes:
+      - ./data:/data/db
+      #- ./script/:/docker-entrypoint-initdb.d
+    ports:
+      - 27017:27017
+    restart: unless-stopped

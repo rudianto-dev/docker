@@ -1,0 +1,19 @@
+version: "3.3"
+services:
+  consul-server:
+    image: "hashicorp/consul:latest"
+    container_name: consul
+    command: "agent -server -bootstrap"
+  consul-agent-ui:
+    image: "hashicorp/consul:latest"
+    container_name: consul-ui
+    ports:
+      - "8500:8500"
+    volumes:
+      - ./data:/consul/data
+      - ./config:/consul/config
+    command: "agent -join consul-server -client 0.0.0.0 -ui"
+    links:
+      - consul-server
+    depends_on:
+      - consul-server
